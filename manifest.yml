@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: javaapp
+spec:
+  replicas: 1
+  selector:
+    app: javaapp
+  template:
+    metadata:
+      name: javaapp
+      labels:
+        app: javaapp
+    spec:
+      containers:
+        - name: javaapp
+          image: farhanregistery/maven-web-app:latest
+          ports:
+            - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: javaapp
+spec:
+  selector:
+    app: javaapp
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: NodePort
+
+---
