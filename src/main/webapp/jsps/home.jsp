@@ -4,7 +4,7 @@
 <html>
 <style>
     body {
-	    background-image: url('cool-background.jpg');
+	    background-image: url('image/cool-background.jpg');
 	    width: 100%;
             height: 100%;
     }
@@ -16,8 +16,8 @@
 </head>
 </head>
 <body>
-<h1 align="center">Welcome to Mithun Software Solutions. Bengaluru,Karnataka </h1>
-<h1 align="center"> java project 1 </h1>
+<h1 align="center"> app deployed </h1>
+<h1 align="center"> java project  </h1>
 <h1 align="left"> Farhan azam </h1>
 <hr>
 <br>
