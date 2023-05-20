@@ -4,7 +4,7 @@
 <html>
 <style>
     body {
-	    background-image: url('image/cool-background.jpg');
+	    background-image: url('images/cool-background.jpg');
 	    width: 100%;
             height: 100%;
     }
