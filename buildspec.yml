@@ -9,8 +9,8 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 496746411336.dkr.ecr.eu-north-1.amazonaws.com
-      - REPOSITORY_URI=496746411336.dkr.ecr.eu-north-1.amazonaws.com/maven-app
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 468085339621.dkr.ecr.ap-south-1.amazonaws.com
+      - REPOSITORY_URI=468085339621.dkr.ecr.ap-south-1.amazonaws.com/eks-registery
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
   build:
     commands:
