@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    
+    environment {
+    AWS_EC2_PRIVATE_KEY=credentials('ec2-private-key') 
+    }
+    
+    stages{
+        stage('checkout code'){
+            steps{
+              git credentialsId: 'f05660b4-84b2-4a9c-84be-bb57141f3fe1', url: 'https://github.com/00farhan00/maven-web-application.git'
+            }
+        }
+        
+        stage('build'){
+            steps{
+                sh "mvn clean package"
+            }
+        }
+        
+        stage('executing playbook to install tomcat server'){
+            steps{
+                ansiblePlaybook credentialsId: 'tomcatserver2', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: '/var/lib/jenkins/ansible-playbook/tomcat.yml'
+            }
+        }
+        
+        stage('DeployApp'){
+            steps{
+             //List the dymaic inventory just for verification
+             sh "ansible-inventory --graph -i aws_ec2.yaml"
+             //Run playbook using dynamic inventory & limit exuection only fo tomcatservers.
+             sh "ansible-playbook -i aws_ec2.yaml  appdeploy.yaml -u ec2-user --private-key=$AWS_EC2_PRIVATE_KEY --limit tomcatservers --ssh-common-args='-o StrictHostKeyChecking=no'"
+            } 
+        }
+        
+    }
+}
+
