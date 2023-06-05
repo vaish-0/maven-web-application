@@ -1,0 +1,32 @@
+---
+# deploy.yml
+
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  roles:
+    - role: launch
+      name: ami-build
+
+- hosts: ami-build
+  roles:
+    - deploy
+    - nginx
+
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  roles:
+    - create-ami
+    
+---
+
+# roles/build-ami/tasks/main.yml
+- name: Create AMI
+  ec2_ami:
+    region: "ap-south-1"
+    instance_id: "i-0e1f6547f38a5067b"
+    name: "webapp-{{ ansible_date_time.iso8601 | regex_replace('[^a-zA-Z0-9]', '-') }}"
+    wait: yes
+    state: present
+  register: ami
