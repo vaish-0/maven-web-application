@@ -1,11 +1,12 @@
 ---
 
 # roles/build-ami/tasks/main.yml
-- name: Create AMI
-  ec2_ami:
-    region: "ap-south-1"
-    instance_id: "i-0e1f6547f38a5067b"
+  - name: Basic AMI Creation
+  amazon.aws.ec2_ami:
+    instance_id: i-0e1f6547f38a5067b
+    wait: true
     name: "webapp-{{ ansible_date_time.iso8601 | regex_replace('[^a-zA-Z0-9]', '-') }}"
-    wait: yes
-    state: present
-  register: ami
+    tags:
+      Name: newtest
+      Service: TestService
+    
