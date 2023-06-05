@@ -1,25 +1,4 @@
 ---
-# deploy.yml
-
-- hosts: localhost
-  connection: local
-  gather_facts: no
-  roles:
-    - role: launch
-      name: ami-build
-
-- hosts: ami-build
-  roles:
-    - deploy
-    - nginx
-
-- hosts: localhost
-  connection: local
-  gather_facts: no
-  roles:
-    - create-ami
-    
----
 
 # roles/build-ami/tasks/main.yml
 - name: Create AMI
