@@ -2,18 +2,18 @@
   become: true
   tasks:
 # creating autoscaling group
-  - amazon.aws.autoscaling_group:
-      name: ASG-ansible
-      region: ap-south-1
-      availability_zones: [ 'ap-south-1a', 'ap-south-1b' ]
-      launch_config_name: 'lc-1'
-      min_size: 2
-      max_size: 3
-      desired_capacity: 2
-      vpc_zone_identifier: [ 'subnet-0ecb54b1dcd30aa85', 'subnet-0593144d2f610ae43' ]
-      tags:
-        - environment: production
-          propagate_at_launch: false
+#  - amazon.aws.autoscaling_group:
+#      name: ASG-ansible
+#      region: ap-south-1
+#      availability_zones: [ 'ap-south-1a', 'ap-south-1b' ]
+#      launch_config_name: 'lc-1'
+#      min_size: 2
+#      max_size: 3
+#      desired_capacity: 2
+#      vpc_zone_identifier: [ 'subnet-0ecb54b1dcd30aa85', 'subnet-0593144d2f610ae43' ]
+#      tags:
+#        - environment: production
+#          propagate_at_launch: false
 
 # Rolling ASG Updates
 
@@ -46,3 +46,6 @@
       max_size: 3
       desired_capacity: 2
       region: ap-south-1
+      availability_zones: [ 'ap-south-1a', 'ap-south-1b' ]
+      vpc_zone_identifier: [ 'subnet-0ecb54b1dcd30aa85', 'subnet-0593144d2f610ae43' ]
+      
