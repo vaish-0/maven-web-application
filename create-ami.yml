@@ -1,4 +1,3 @@
-import: boto3
 - hosts: localhost
   become: true
   tasks:
