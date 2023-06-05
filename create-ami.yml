@@ -1,7 +1,7 @@
 ---
 
 # roles/build-ami/tasks/main.yml
-  - name: Basic AMI Creation
+- name: Basic AMI Creation
   amazon.aws.ec2_ami:
     instance_id: i-0e1f6547f38a5067b
     wait: true
