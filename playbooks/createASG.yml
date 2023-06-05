@@ -31,7 +31,7 @@
     community.aws.autoscaling_launch_config:
        name: my_new_lc
        image_id: ami-0d77ac0a6d3dca7b0
-       key_name: mykey
+       key_name: key_all
        region: ap-south-1
        security_groups: sg-042554621b257d18a
        instance_type: t2.micro
