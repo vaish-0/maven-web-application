@@ -33,6 +33,18 @@ pipeline {
             } 
         }
         
+        stage('creating AMI '){
+            steps{
+            sh "ansible-playbook playbooks/create-ami.yml "
+            }
+        }
+        
+        stage('creating ASG & updating asg instances'){
+            steps{
+            sh "ansible-playbook playbooks/createASG.yml "
+            }
+        }
+        
     }
 }
 
