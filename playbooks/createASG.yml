@@ -2,17 +2,17 @@
   become: true
   tasks:
 # creating autoscaling group
-- amazon.aws.autoscaling_group:
-    name: ASG-ansible
-    availability_zones: [ 'ap-south-1a', 'ap-south-1b' ]
-    launch_config_name: 'lc-1'
-    min_size: 2
-    max_size: 3
-    desired_capacity: 2
-    vpc_zone_identifier: [ 'subnet-0ecb54b1dcd30aa85', 'subnet-0593144d2f610ae43' ]
-    tags:
-      - environment: production
-        propagate_at_launch: false
+  - amazon.aws.autoscaling_group:
+      name: ASG-ansible
+      availability_zones: [ 'ap-south-1a', 'ap-south-1b' ]
+      launch_config_name: 'lc-1'
+      min_size: 2
+      max_size: 3
+      desired_capacity: 2
+      vpc_zone_identifier: [ 'subnet-0ecb54b1dcd30aa85', 'subnet-0593144d2f610ae43' ]
+      tags:
+        - environment: production
+          propagate_at_launch: false
 
 # Rolling ASG Updates
 
@@ -26,22 +26,22 @@
 # If this is a newly created group, the instances will not be replaced since all instances
 # will have the current launch configuration.
 
-- name: create launch config
-  community.aws.autoscaling_launch_config:
-    name: my_new_lc
-    image_id: ami-0d77ac0a6d3dca7b0
-    key_name: mykey
-    region: ap-south-1
-    security_groups: sg-042554621b257d18a
-    instance_type: t2.micro
-    assign_public_ip: true
+  - name: create launch config
+    community.aws.autoscaling_launch_config:
+       name: my_new_lc
+       image_id: ami-0d77ac0a6d3dca7b0
+       key_name: mykey
+       region: ap-south-1
+       security_groups: sg-042554621b257d18a
+       instance_type: t2.micro
+       assign_public_ip: true
 
-- amazon.aws.autoscaling_group:
-    name: myasg
-    launch_config_name: my_new_lc
-    health_check_period: 60
-    replace_all_instances: true
-    min_size: 2
-    max_size: 3
-    desired_capacity: 2
-    region: ap-south-1
+  - amazon.aws.autoscaling_group:
+      name: myasg
+      launch_config_name: my_new_lc
+      health_check_period: 60
+      replace_all_instances: true
+      min_size: 2
+      max_size: 3
+      desired_capacity: 2
+      region: ap-south-1
