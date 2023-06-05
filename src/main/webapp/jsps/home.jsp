@@ -17,7 +17,7 @@
 </head>
 <body>
 <h1 align="center"> app deployed </h1>
-<h1 align="center"> java project  </h1>
+<h1 align="center"> java project 2 </h1>
 <h1 align="left"> Farhan azam </h1>
 <hr>
 <br>
