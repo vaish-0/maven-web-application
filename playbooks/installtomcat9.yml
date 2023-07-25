@@ -1,10 +1,10 @@
 - hosts: tomcatservers
   become: true
   tasks:
-    - name: Install Java
-      yum:
-        name: java-11-amazon-corretto-devel
-        state: present
+   # - name: Install Java
+    #  yum:
+     #   name: java-11-amazon-corretto-devel
+      #  state: present
     - name: add tomcatuser
       user:
         name: tomcat
