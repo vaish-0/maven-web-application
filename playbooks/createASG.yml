@@ -30,10 +30,10 @@
   - name: create launch config
     community.aws.autoscaling_launch_config:
        name: my_new_lc
-       image_id: ami-0d77ac0a6d3dca7b0
-       key_name: key_all
+       image_id: ami-0b4d6a8fb4ceffbd8
+       key_name: ansible_jenkins	
        region: ap-south-1
-       security_groups: sg-042554621b257d18a
+       security_groups: sg-0e8deef22f4f4dfdb
        instance_type: t2.micro
        assign_public_ip: true
 
@@ -47,5 +47,5 @@
       desired_capacity: 2
       region: ap-south-1
       availability_zones: [ 'ap-south-1a', 'ap-south-1b' ]
-      vpc_zone_identifier: [ 'subnet-0ecb54b1dcd30aa85', 'subnet-0593144d2f610ae43' ]
+      vpc_zone_identifier: [ 'subnet-0357320ad1fc374df', 'subnet-06c405bc87dde0e37' ]
       
