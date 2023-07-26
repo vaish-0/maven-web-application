@@ -4,11 +4,11 @@
 # AMI build
   - name: Basic AMI Creation
     amazon.aws.ec2_ami:
-      instance_id: i-0e1f6547f38a5067b
+      instance_id: i-097f64d75a423772d
       wait: true
       region: ap-south-1
-      name: "webapp-{{ ansible_date_time.iso8601 | regex_replace('[^a-zA-Z0-9]', '-') }}"
+      name: "webapp"
       tags:
-        Name: newtest
+        Name: Node_01_AMI
         Service: TestService
     
