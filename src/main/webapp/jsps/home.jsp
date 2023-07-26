@@ -18,7 +18,7 @@
 <body>
 <h1 align="center"> app deployed </h1>
 <h1 align="center"> java project 2 </h1>
-<h1 align="left"> Farhan azam </h1>
+<h1 align="left"> Vaishnavi Asutkar</h1>
 <hr>
 <br>
 	<h1><h3> Server Side IP Address </h3><br>
