@@ -2,7 +2,7 @@
 - hosts: localhost
   become: true
   tasks:
-    - name: create launch config
+    - name: createlaunchconfig
       community.aws.autoscaling_launch_config:
         name: my_new_lc
         image_id: ami-04c736683313f2123
