@@ -1,51 +1,28 @@
+---
 - hosts: localhost
   become: true
   tasks:
-# creating autoscaling group
-#  - amazon.aws.autoscaling_group:
-#      name: ASG-ansible
-#      region: ap-south-1
-#      availability_zones: [ 'ap-south-1a', 'ap-south-1b' ]
-#      launch_config_name: 'lc-1'
-#      min_size: 2
-#      max_size: 3
-#      desired_capacity: 2
-#      vpc_zone_identifier: [ 'subnet-0ecb54b1dcd30aa85', 'subnet-0593144d2f610ae43' ]
-#      tags:
-#        - environment: production
-#          propagate_at_launch: false
-
-# Rolling ASG Updates
-
-# Below is an example of how to assign a new launch config to an ASG and terminate old instances.
-#
-# All instances in "myasg" that do not have the launch configuration named "my_new_lc" will be terminated in
-# a rolling fashion with instances using the current launch configuration, "my_new_lc".
-#
-# This could also be considered a rolling deploy of a pre-baked AMI.
-#
-# If this is a newly created group, the instances will not be replaced since all instances
-# will have the current launch configuration.
-
-  - name: create launch config
-    community.aws.autoscaling_launch_config:
-       name: my_new_lc
-       image_id: ami-0b4d6a8fb4ceffbd8
-       key_name: ansible_jenkins	
-       region: ap-south-1
-       security_groups: sg-0e8deef22f4f4dfdb
-       instance_type: t2.micro
-       assign_public_ip: true
-
-  - amazon.aws.autoscaling_group:
-      name: myasg
-      launch_config_name: my_new_lc
-      health_check_period: 60
-      replace_all_instances: true
-      min_size: 2
-      max_size: 3
-      desired_capacity: 2
-      region: ap-south-1
-      availability_zones: [ 'ap-south-1a', 'ap-south-1b' ]
-      vpc_zone_identifier: [ 'subnet-0357320ad1fc374df', 'subnet-06c405bc87dde0e37' ]
-      
+    - name: create launch config
+      community.aws.autoscaling_launch_config:
+        name: my_new_lc
+        image_id: ami-0b4d6a8fb4ceffbd8
+        key_name: ansible_jenkins
+        region: ap-south-1
+        security_groups: sg-0e8deef22f4f4dfdb
+        instance_type: t2.micro
+        assign_public_ip: true
+    - amazon.aws.autoscaling_group:
+        name: myasg
+        launch_config_name: my_new_lc
+        health_check_period: 60
+        replace_all_instances: true
+        min_size: 2
+        max_size: 3
+        desired_capacity: 2
+        region: ap-south-1
+        availability_zones:
+          - ap-south-1a
+          - ap-south-1b
+        vpc_zone_identifier:
+          - subnet-0357320ad1fc374df
+          - subnet-06c405bc87dde0e37
