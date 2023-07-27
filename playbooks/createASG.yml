@@ -5,7 +5,7 @@
     - name: create launch config
       community.aws.autoscaling_launch_config:
         name: my_new_lc
-        image_id: ami-0b4d6a8fb4ceffbd8
+        image_id: ami-04c736683313f2123
         key_name: ansible_jenkins
         region: ap-south-1
         security_groups: sg-0e8deef22f4f4dfdb
