@@ -26,3 +26,4 @@
         vpc_zone_identifier:
           - subnet-0357320ad1fc374df
           - subnet-06c405bc87dde0e37
+...
